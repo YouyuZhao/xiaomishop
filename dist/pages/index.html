@@ -1,0 +1,63 @@
+<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>小米官网首页</title><link rel=stylesheet href=../css/index.css><link rel=stylesheet href=//at.alicdn.com/t/font_1667381_hxcnvy70mje.css></head><script src=../lib/jquery/dist/jquery.min.js></script><script src=../lib/swiper/js/swiper.min.js></script><script src=../js/index.js></script><body><div class=header><div class=container><ul><a href=#><li>小米商城</li></a><span>|</span> <a href=#><li>MIUI</li></a><span>|</span> <a href=#><li>IoT</li></a><span>|</span> <a href=#><li>云服务</li></a><span>|</span> <a href=#><li>金融</li></a><span>|</span> <a href=#><li>有品</li></a><span>|</span> <a href=#><li>小爱开放平台</li></a><span>|</span> <a href=#><li>企业团购</li></a><span>|</span> <a href=#><li>资质证照</li></a><span>|</span> <a href=#><li>下载app</li></a><span>|</span></ul><ul><a href=#><li>登录</li></a><a href=#><li>注册</li></a><a href=#><li>消息通知</li></a><a href=#><li><i class="iconfont icon-gouwuchekong"></i>购物车(0)</li></a></ul></div></div><div class=nav><div class=container><div class=logo>logo</div><ul></ul><div class=search><input type=text class=nav-input1> <input type=submit class=nav-input2 value=""></div></div></div><div class="nav-box container"><ul><li><div><img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/82ddffd7562c54f9166fa876c143ff22.png?thumb=1&w=200&h=138&f=webp&q=90" alt=""></div><p class=title>小米手机</p><span class=price>1999元</span></li></ul></div></body><script>getList();
+        function getList(){
+            $.ajax({
+                url:"../lib/json/nav.json",
+                dataType:"json",
+                success:function(res){
+                    console.log(res)
+
+                    //准备一个空字符串，准备渲染一级菜单
+                    let str="";
+                    
+                    //开始渲染
+                    res.forEach(item => {
+                        str+=`<li>${ item.name }</li>`
+                    })
+
+                    //填充到一级菜单里面
+                    $(".nav ul")
+                        .html(str)
+                        //给一级菜单添加移入移出事件
+                        .on({
+                            mouseenter:function(){$(".nav-box").stop().slideDown()},
+                            mouseleave:()=>$(".nav-box").stop().slideUp(),
+                        })
+                        .children("li")//找到所有一级菜单下的所有li
+                        .on("mouseover",function(){
+                            const index=$(this).index();
+                            const list=res[index].list;//找到要渲染的list数组
+                            console.log(list)
+
+                            //准备一个空字符串，准备渲染二级菜单
+                            let str="";
+
+                            //开始渲染
+                            list.forEach(function(item){
+                                str+=`
+                                <li>
+                                    <div>
+                                        <img src="${item.list_url}" alt="">
+                                    </div>
+                                    <p class="title">${item.list_name}</p>
+                                    <span class="price">${item.list_price}</span>
+                                </li>`
+                            })
+
+
+                            //填充到二级菜单里面
+                            $(".nav-box ul")
+                                .html(str)
+
+                        }) 
+                    
+                    //给nav-box添加移入移出事件
+                    $(".nav-box")
+                        .on({
+                            mouseover:function(){$(this).finish().show()},
+                            mouseout:function(){$(this).finish().slideUp()}
+                        })
+                    
+                    
+                }
+            })
+        }</script></html>
