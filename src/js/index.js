@@ -150,6 +150,8 @@ function getNavlist(){
 $(document).ready(function () {
     var mySwiper = new Swiper('.swiper2', {
         // direction: 'vertical', // 垂直切换选项
+        slidesPerView : 4,
+        slidesPerGroup : 4,
         loop: true, // 循环模式选项
         autoplay:{
             delay:1000},

@@ -86,9 +86,9 @@ const serverHandler = () => {
                proxies: [
                  // 每一个代理配置就是一个对象
                  {
-                   source: '/gx', // 源, 你的代理标识符
+                   source: '/dm', // 源, 你的代理标识符
                    // 你直接请求下面这个地址压根也拿不到东西, 因为跨域了
-                   target: 'http://127.0.0.1/test.php' // 目标, 你要代理的地址
+                   target: 'https://search.damai.cn/searchajax.html' // 目标, 你要代理的地址
                  },
                  {
                    source: '/gx2',

@@ -1,0 +1,33 @@
+.pagi{
+    width:1226px;
+    height:100px;
+    margin:0 auto;
+    border:2px solid #333;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.box{
+    width:1226px;
+    margin:20px auto;
+}
+.box ul{
+    width:100%;
+    display:flex;
+    flex-wrap: wrap;
+}
+.box ul li{
+    width:22%;
+    height:300px;
+    border:1px solid #ccc;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    margin:0 0 20px 20px;
+}
+.box ul li img{
+    width:153px;
+    height:206px;
+    display:block;
+}
